@@ -10,8 +10,26 @@ table {
 
 p {
 	font-size:1.6em;
+}
+
+a:link {
+	text-decoration: none;
+	color:#F5F5DC;
+	}
+a:visited {
+	text-decoration: none;
+	color:#F5F5DC;
 
 }
+a:hover {
+	text-decoration: underline;
+	color:#FF0000;
+}
+a:active {
+	text-decoration: underline;
+
+}
+
 
 #title {
 	background-color:#25383C;
