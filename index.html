@@ -10,16 +10,20 @@
 	<body><center>
 		<script type="text/javascript">
 			$(document).ready(function(){
-    			$("#data").accordion({collapsible: true, active:false});
+    			$("#dataleft").accordion({collapsible: true, active:false});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+    			$("#dataright").accordion({collapsible: true, active:false});
 			});
 		</script>
 		<br><h1><a href="http://DistantCollaborators.github.io">The Distant Collaborators<a></h1><br>
 
 		<table cellpadding="10">
 			<tr id="title">
-				<!-- <td id="leftcol">Name</td> -->
-				<td>Team Member</td>
-				<td>Github URL</td>
+				<td>Team Members<br><font size="4">Distance Students</font></td>
+				<td>Github Links</td>
 			</tr>
 			<tr id="table">
 				<td>Andy</td>
@@ -34,27 +38,43 @@
 				<td><a href="http://nmdenison.github.io/">URL</a></td>
 			</tr>
 		</table>
-		<div id="data">
-			<h2>Zillow Data Sources</h2>
-			<div>
-				<p><a href="http://www.zillow.com/research/data/" target="blank">Real Estate Visualization<a></p>
-				<p><a href="http://www.zillow.com/howto/api/APIOverview.htm" target="blank">Real Estate Value and Mortgage Visualization</a></p>
-			</div>
-			<h2>Census Bureau</h2>
-			<div>
-				<p><a href="http://www.census.gov/data/developers/data-sets.html" target="blank">Census Bureau Data<a></p>
-				<p><a href="http://www.programmableweb.com/news/us-census-bureau-releases-first-ever-public-api/2012/07/26" target="blank">Another Censur Bureau Source of Data</a></p>
-				<p><a href="http://developer.usatoday.com/docs/read/Census" target="blank">USA Today Census Bureau Data</a></p>
-			</div>
-			<h2>CIA World Fact Book Data</h2>
-			<div>
-				<p>Dust & Magnet Multivariate Visualization of the World's Governments and Populations. <a href="https://github.com/twigkit/worldfactbook-dataset" target="blank">Data Source</a></p>
-			</div>
-			<h2>NASA Data Sources</h2>
-			<div>
-				<p>Visualize the vastnass of space, distances and scale.still looking at data possible</p>
-			</div>
 
-		</div>
+		<br><br>
+		<table cellpadding="10">
+			<tr id="header">
+				<td></td>
+				<td>Data Description</td>
+				<td>Why Visualization</td>
+				<td>Links</td>
+			</tr>
+			<tr id="project">
+				<td>Realestate</td>
+				<td><p>This data shows various aspect of US home values, sales, purchases, locations and other information.</p></td>
+				<td><p>Visualization of this information can assist buyers, sellers and investors to maximize their realestate decision making.</p></td>
+				<td><p><a href="http://www.zillow.com/research/data/" target="blank">Zillow<a></p></td>
+			</tr>
+			<tr id="project">
+				<td>CIA World Factbook</td>
+				<td><p>This data captures summary information about the world's countries, their populations, industries, budgets and governments.</p></td>
+				<td><p>Visualization of this information could be for enterntainment or exploration to better understand the worlds countries and the differences between them.</p></td>
+				<td><p><a href="https://github.com/twigkit/worldfactbook-dataset" target="blank">CIA Data</a></p></td>
+			</tr>
+			<tr id="project">
+				<td><img src="http://www.logoeps.com/wp-content/uploads/2012/04/who-vector.png" alt="World Health Organization Logo" style="width:35px;height:35px">  World Health Organization</td>
+				<td><p>This data source is the summary of the world's current health and related issues.</p></td>
+				<td><p>Visualization of this information source reveals the health of the entire Earth.</p></td>
+				<td><p><a href="http://apps.who.int/gho/data/node.resources.api" target="blank">WHO Data</a></p></td>
+			</tr>		
+			<tr id="project">
+				<td>US Census</td>
+				<td><p>This data captures results of the United States census bureau.</p></td>
+				<td><p>Visualization of this information could be for enterntainment, exploration or explanation to better understand the US population past and present.</p></td>
+				<td><p><a href="http://www.census.gov/data/developers/data-sets.html" target="blank">Bureau Link1<a></p>
+				<p><a href="http://www.programmableweb.com/news/us-census-bureau-releases-first-ever-public-api/2012/07/26" target="blank">Bureau Link2</a></p>
+				<p><a href="http://developer.usatoday.com/docs/read/Census" target="blank">USA Today</a></p></td>
+			</tr>
+		</table>
+		<br><br>
+
 	</body></center>
 </html>

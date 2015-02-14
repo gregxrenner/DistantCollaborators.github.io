@@ -9,7 +9,7 @@ table {
 }
 
 p {
-	font-size:1.6em;
+	font-size:0.5em;
 }
 
 a:link {
@@ -27,9 +27,26 @@ a:hover {
 }
 a:active {
 	text-decoration: underline;
-
+	color:#0000FF;
 }
 
+#dataleft {
+	background-color:#2B2A2A;
+	/* foreground: #BAB48D */
+	height:500px;
+	width:400px;
+	float:left;
+	padding:5px;
+}
+
+#dataright {
+	background-color:#2B2A2A;
+	/* foreground: #BAB48D */
+	height:500px;
+	width:400px;
+	float:right;
+	padding:5px;
+}
 
 #title {
 	background-color:#25383C;
@@ -38,6 +55,8 @@ a:active {
 	text-align: center;
 	font-size:1.75em;
     vertical-align: text-top;
+    color:#F5F5DC;
+
 }
 #table {
 	background-color:#6D6968;
@@ -46,5 +65,29 @@ a:active {
 	text-align: center;
 	font-size:1.75em;
 }
+#header {
+	background-color:#2B2A2A;
+	font-family:"Times New Roman", Times, Serif;
+	font-weight:bold;
+	text-align: center;
+	font-size:1.75em;
+    vertical-align: text-top;
+    color:#F5F5DC;
 
+}
+#project {
+	background-color:#6D6968;
+	color:black;
+	font-family: "Ubuntu", Sans-Serif;
+	text-align:left;
+	font-size:1.75em;
+}
+
+#inside {
+	background-color:#6D6968;
+	height:200px;
+	width:300px;
+	float:center;
+	padding:1px;
+}
 
