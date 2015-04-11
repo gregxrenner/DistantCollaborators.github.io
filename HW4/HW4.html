@@ -29,7 +29,7 @@
 	
 	<h1>HW4</h1>
 	<p>2005 Benefits per Household</p>
-<div>
+<div id="plot1" style="margin:0px auto;">
 	<script type="text/javascript">
 		var w = 500;
 		var h = 300;
@@ -40,7 +40,7 @@
 			.projection(projection);
 		var color = d3.scale.quantize()
 			.range(["#FFFAFA","#F4C2C2","#FF6961","#CE1620","#800000"]);
-		var svg = d3.select("body")
+		var svg = d3.select("#plot1")
 					.append("svg")
 					.attr("width", w)
 					.attr("height", h);
