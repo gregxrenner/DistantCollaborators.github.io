@@ -22,6 +22,14 @@
 		font-style: italic;
 		text-align: center;
 		}
+	.legend { list-style: none; }
+	.legend li { float: left; margin-right: 10px; }
+	.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+	.legend .first { background-color: #FFFAFA; }
+	.legend .second { background-color: #F4C2C2; }
+	.legend .third { background-color: #FF6961; }
+	.legend .fourth { background-color: #CE1620; }
+	.legend .fifth { background-color: #800000; }
 </style>
 
 <body>
@@ -29,6 +37,14 @@
 	
 	<h1>HW4</h1>
 	<p>2005 Benefits per Household</p>
+	<ul class="legend">
+    		<li><span class="first"></span> $200 or less</li>
+    		<li><span class="second"></span>between $200 and $228</li>
+    		<li><span class="third"></span> Between $229 and $260</li>
+    		<li><span class="fourth"></span> Between $261 and $299</li>
+     		<li><span class="fifth"></span> $300 and up </li>
+	</ul>
+
 <div id="plot1" style="margin:0px auto;">
 	<script type="text/javascript">
 		var w = 500;
