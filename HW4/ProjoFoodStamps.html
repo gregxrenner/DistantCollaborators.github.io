@@ -28,11 +28,12 @@
 			d3.csv("SNAPsummary.csv", function(SNAPdata) {
 				console.log("Snapdata Input");
 				console.log(SNAPdata);
-				var totalData = SNAPdata["Total Costs ($M)"];
-				console.log(totalData);
-//				SNAPdata.forEach(function(d) {
-//					d.totalcost=parse
-//				})
+
+				SNAPdata.forEach(function(d) {
+					d.totalcost=+d.{["Total Costs ($1M)"]};
+				});
+				console.log(SNAPdata.totalcost);
+			});
 
 
 
