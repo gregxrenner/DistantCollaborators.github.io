@@ -35,9 +35,9 @@
 <body>
 <center>
 	
-	<h1>Distant Collaborators HW4</h1>
+	<h1>Distant Collaborators HW4</h1><br><br>
 	<p>2005 Benefits per Household</p>
-	<p>The map below shows the benefits per household by state for the Supplemental
+	<p class="textBlock">The map below shows the benefits per household by state for the Supplemental
 		Nutrition Assistance Program (SNAP). This program was formally known as the Food Stamps program.
 		Blank States reflect an absence of data. Thanks to Mrs. Nadine Nichols and Mrs. Maeve Myers 
 		for providing the specific data we were looking for.
@@ -45,8 +45,8 @@
 
 <div id="plot1" style="margin:0px auto;">
 	<script type="text/javascript">
-		var w = 500;
-		var h = 300;
+		var w = 800;
+		var h = 480;
 		var projection = d3.geo.albersUsa()
 			.translate([w/2, h/2])
 			.scale([500]);
@@ -102,7 +102,8 @@
     		<li><span class="fourth"></span> $261-$299</li>
      		<li><span class="fifth"></span> $300 and up </li>
 	</ul>
-</div>
+</div><br><br>
+<p class="cite">Data Source: Data.gov</p><br><br>
 
 <!--Comment Feature-->	
 <div id="disqus_thread" style="width:600px; margin:30px auto;"></div>
@@ -131,7 +132,7 @@
 
 </script>
 <!--End Google-->
-<p>Data Source: Data.gov</p>
+
 </center>
 </body>
 </html>
