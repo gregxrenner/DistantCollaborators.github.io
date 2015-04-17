@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Total Cost, Average Participation and Benefit per Person of SNAP over time</title>
+		<title>D3: Demo of linear easing</title>
 		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<style type="text/css">
@@ -11,38 +11,52 @@
 	</head>
 	<body>
 	
-		<p>Click Here: Switch to Historical Costs of Food Stamps.</p>
-		<p>Click Here: Switch to see Historical Average Participation.</p>
-		<p>Click Here: Switch to Historical Average Benefit Per Person.</p>
-		<p><a href = "http://www.fns.usda.gov/sites/default/files/pd/SNAPsummary.xls" target="_blank">Data.gov Source</a>
- </p>
+		<p>Click Here to toggle between Historical Costs of Food Stamps and Average Partipation.</p>
+			
 		<script type="text/javascript">
 
 			//Width and height
 			var w = 600;
 			var h = 250;
+			var cost = [];
+			var participation = [];
+			var header = [];
+			var year = [];
 			
 //			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-//					11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+//							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
 			
 //			 http://www.fns.usda.gov/sites/default/files/pd/SNAPsummary.xls
 			d3.csv("SNAPsummary.csv", function(SNAPdata) {
 				console.log("Snapdata Input");
 				console.log(SNAPdata);
+				console.log("Map Snapdata for bar charts");
+				header = Object.keys(SNAPdata[0]);
+				console.log("Show header row:  "+header);
 
-				SNAPdata.forEach(function(d) {
-					d.totalcost=["Total Costs ($1M)"]
-				});
-				console.log(SNAPdata.totalcost);
-			});
+//				cost = cost.push(SNAPdata["Total Costs ($M)"]);
+//				console.log(SNAPdata["Total Costs ($M)"])
 
-/*
+  				SNAPdata.map(function(d) {
+  					console.log ('Fiscal Year '+d['Fiscal Year']+' - Total Costs '+d['Total Costs ($M)']);
+  					year.push(d['Fiscal Year']);
+  					cost.push(d['Total Costs ($M)']);
+  					participation.push(d['Average Participation (Thousands)']);
+  					if (d['Fiscal Year']==='2014'){
+						console.log("Years: "+year);
+						console.log("Cost:  "+cost);
+						console.log("Participation:  "+participation);
+  					}
+  				});
+
+
+
 			var xScale = d3.scale.ordinal()
-							.domain(d3.range(dataset.length))
+							.domain(d3.range(cost.length))
 							.rangeRoundBands([0, w], 0.05);
 
 			var yScale = d3.scale.linear()
-							.domain([0, d3.max(dataset)])
+							.domain([0, d3.max(cost)])
 							.range([0, h]);
 			
 			//Create SVG element
@@ -53,7 +67,7 @@
 
 			//Create bars
 			svg.selectAll("rect")
-			   .data(dataset)
+			   .data(cost)
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
@@ -72,7 +86,7 @@
 
 			//Create labels
 			svg.selectAll("text")
-			   .data(dataset)
+			   .data(cost)
 			   .enter()
 			   .append("text")
 			   .text(function(d) {
@@ -97,12 +111,12 @@
 				.on("click", function() {
 
 					//New values for dataset
-					dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
-								5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
+					//dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
+	//							5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
 
 					//Update all rects
 					svg.selectAll("rect")
-					   .data(dataset)
+					   .data(participation)
 					   .transition()
 					   .duration(2000)
 					   .ease("linear")
@@ -118,7 +132,7 @@
 
 					//Update all labels
 					svg.selectAll("text")
-					   .data(dataset)
+					   .data(participation)
 					   .transition()
 					   .duration(2000)
 					   .ease("linear")
@@ -133,8 +147,8 @@
 					   });
 					   				
 				});
-
-	*/		
+			});
+			
 		</script>
 	</body>
 </html>
