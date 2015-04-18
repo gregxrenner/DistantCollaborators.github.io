@@ -50,9 +50,6 @@
 		var projection = d3.geo.albersUsa()
 			.translate([w/2, h/2])
 			.scale([500]);
-		var tooltip = d3.select("body").append("div")
-					.attr("class", "tooltip")
-					.style("opacity", 0);
 		var path = d3.geo.path()
 			.projection(projection);
 		var color = d3.scale.quantize()
@@ -66,6 +63,9 @@
 				d3.min(data, function(d) { return d.value; }), 
 				d3.max(data, function(d) { return d.value; })
 			]);
+			var tooltip = d3.select("body").append("div") /*add tooltips*/
+					.attr("class", "tooltip")
+					.style("opacity", 0);
 			d3.json("us-states.json", function(json) {
 				for (var i = 0; i < data.length; i++) {
 					var dataState = data[i].state;
