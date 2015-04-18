@@ -20,10 +20,11 @@
 			var h = 250;
 			var cost = [];
 			var participation = [];
+			var plotcost = [];
+			var plotparticipation = [];
 			var header = [];
 			var year = [];
 			var eachtest = [];
-			var plotdata = [];
 			
 //			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 //							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
@@ -36,21 +37,20 @@
 				header = Object.keys(SNAPdata[0]);
 				console.log("Show header row:  "+header);
 
-//				cost = cost.push(SNAPdata["Total Costs ($M)"]);
-//				console.log(SNAPdata["Total Costs ($M)"])
-
   				SNAPdata.map(function(d) {
   					console.log ('Fiscal Year '+d['Fiscal Year']+' - Total Costs '+d['Total Costs ($M)']);
   					year.push(d['Fiscal Year']);
   					cost.push(d['Total Costs ($M)']);
   					participation.push(d['Average Participation (Thousands)']);
-  					plotdata.push({x:d['Fiscal Year'],y:d['Total Costs ($M)']});
+  					plotcost.push({x:d['Fiscal Year'],y:d['Total Costs ($M)']});
+  					plotparticipation.push({x:d['Fiscal Year'],y:d['Average Participation (Thousands)']});
   					if (d['Fiscal Year']==='2014'){
 						console.log("Years: "+year);
-						console.log("Cost:  "+cost);
-						console.log("Participation:  "+participation);
-						console.log("Plot Data:  "+plotdata);
-						console.log(plotdata);
+						console.log("Cost:  "+cost+" total Length:"+cost.length);
+						console.log("Participation:  "+participation+" total Length:"+participation.length);
+						console.log("Plot Data:  "+plotcost);
+						//console.log(plotcost);
+						//console.log(plotparticipation);
   					}
   				});
 
@@ -62,12 +62,12 @@
   					};
   				})
 */
-			var xScale = d3.scale.ordinal()
-							.domain(d3.range(plotdata.length))
+			var xScale = d3.scale.linear()
+							.domain(d3.range(cost.length))
 							.rangeRoundBands([0, w], 0.05);
 
 			var yScale = d3.scale.linear()
-							.domain([0, d3.max(plotdata)])
+							.domain([0, d3.max(cost)])
 							.range([0, h]);
 			
 			//Create SVG element
@@ -78,7 +78,7 @@
 
 			//Create bars
 			svg.selectAll("rect")
-			   .data(plotdata)
+			   .data(cost)
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
@@ -97,7 +97,7 @@
 
 			//Create labels
 			svg.selectAll("text")
-			   .data(plotdata)
+			   .data(cost)
 			   .enter()
 			   .append("text")
 			   .text(function(d) {
