@@ -22,6 +22,8 @@
 			var participation = [];
 			var header = [];
 			var year = [];
+			var eachtest = [];
+			var plotdata = [];
 			
 //			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 //							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
@@ -42,15 +44,24 @@
   					year.push(d['Fiscal Year']);
   					cost.push(d['Total Costs ($M)']);
   					participation.push(d['Average Participation (Thousands)']);
+  					plotdata.push({x:d['Fiscal Year'],y:['Total Costs ($M)']});
   					if (d['Fiscal Year']==='2014'){
 						console.log("Years: "+year);
 						console.log("Cost:  "+cost);
 						console.log("Participation:  "+participation);
+						console.log("Plot Data:  "+plotdata);
+						console.log(plotdata);
   					}
   				});
 
-
-
+/*  Doesn't work yet
+  				SNAPdata.forEach(function(d) {
+  					d.eachtest = +d['Fiscal Year'];
+  					if (d['Fiscal Year']==='2014'){
+						console.log("For Each Test Years: "+eachtest);
+  					};
+  				})
+*/
 			var xScale = d3.scale.ordinal()
 							.domain(d3.range(cost.length))
 							.rangeRoundBands([0, w], 0.05);
