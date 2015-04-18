@@ -44,7 +44,7 @@
   					year.push(d['Fiscal Year']);
   					cost.push(d['Total Costs ($M)']);
   					participation.push(d['Average Participation (Thousands)']);
-  					plotdata.push({x:d['Fiscal Year'],y:['Total Costs ($M)']});
+  					plotdata.push({x:d['Fiscal Year'],y:d['Total Costs ($M)']});
   					if (d['Fiscal Year']==='2014'){
 						console.log("Years: "+year);
 						console.log("Cost:  "+cost);
@@ -63,11 +63,11 @@
   				})
 */
 			var xScale = d3.scale.ordinal()
-							.domain(d3.range(cost.length))
+							.domain(d3.range(plotdata.length))
 							.rangeRoundBands([0, w], 0.05);
 
 			var yScale = d3.scale.linear()
-							.domain([0, d3.max(cost)])
+							.domain([0, d3.max(plotdata)])
 							.range([0, h]);
 			
 			//Create SVG element
@@ -78,7 +78,7 @@
 
 			//Create bars
 			svg.selectAll("rect")
-			   .data(cost)
+			   .data(plotdata)
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
@@ -97,7 +97,7 @@
 
 			//Create labels
 			svg.selectAll("text")
-			   .data(cost)
+			   .data(plotdata)
 			   .enter()
 			   .append("text")
 			   .text(function(d) {
