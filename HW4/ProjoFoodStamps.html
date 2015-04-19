@@ -11,7 +11,8 @@
 	</head>
 	<body>
 	
-		<p>Click Here to toggle between Historical Costs of Food Stamps and Average Partipation.</p>
+		<p id="CostsID">Click Here to show Total Cost over time.</p><br>
+		<p id="ParticipationID">Click Here to show Average Partipation in Thousands over time.</p>
 			
 		<script type="text/javascript">
 
@@ -119,10 +120,9 @@
 
 */
 			//On click, update with new data			
-			d3.select("p")
+			d3.select("#ParticipationID")
 				.on("click", function() {
 
-					toggle=true;
 					//Update all rects
 					svg.selectAll("rect")
 					   .data(participation)
@@ -138,6 +138,29 @@
 					   .attr("fill", function(d) {
 							return "blue";
 					   });
+				});
+
+//			On click, update with new data			
+			d3.select("#CostsID")
+				.on("click", function() {
+
+					//Update all rects
+					svg.selectAll("rect")
+					   .data(cost)
+					   .transition()
+					   .duration(2000)
+					   .ease("linear")
+					   .attr("y", function(d) {
+					   		return h - yScale(d);
+					   })
+					   .attr("height", function(d) {
+					   		return yScale(d);
+					   })
+					   .attr("fill", function(d) {
+							return "teal";
+					   });
+
+
 /*
 					Update all labels
 					svg.selectAll("text")
