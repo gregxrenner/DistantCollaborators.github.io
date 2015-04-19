@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Food Stamp Costs and Average Participation over time</title>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+	
+		<p id="CostsID">Click Here to show Total Cost over time.</p><br>
+		<p id="ParticipationID">Click Here to show Average Partipation in Thousands over time.</p>
+			
+		<script type="text/javascript">
+
+			//Width and height
+			var w = 900;
+			var h = 600;
+			var cost = [];
+			var participation = [];
+			var plotcost = [];
+			var plotparticipation = [];
+			var header = [];
+			var year = [];
+			var eachtest = [];
+			var padding = 5;
+
+//			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+//							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+			
+//			 http://www.fns.usda.gov/sites/default/files/pd/SNAPsummary.xls
+			d3.csv("SNAPsummary.csv", function(SNAPdata) {
+				console.log("Snapdata Input");
+				console.log(SNAPdata);
+				console.log("Map Snapdata for bar charts");
+				header = Object.keys(SNAPdata[0]);
+				console.log("Show header row:  "+header);
+
+  				SNAPdata.map(function(d) {
+  					console.log ('Fiscal Year '+d['Fiscal Year']+' - Total Costs '+d['Total Costs ($M)']);
+  					year.push(d['Fiscal Year']);
+  					cost.push(+d['Total Costs ($M)']);
+  					participation.push(+d['Average Participation (Thousands)']);
+  					plotcost.push({x:d['Fiscal Year'],y:d['Total Costs ($M)']});
+  					plotparticipation.push({x:d['Fiscal Year'],y:d['Average Participation (Thousands)']});
+  					if (d['Fiscal Year']==='2014'){
+						console.log("Years: "+year);
+						console.log("Cost:  "+cost+" total Length:"+cost.length);
+						console.log("Participation:  "+participation+" total Length:"+participation.length);
+						console.log("Plot Data:  "+plotcost);
+						//console.log(plotcost);
+						//console.log(plotparticipation);
+  					}
+  				});
+
+/*  Doesn't work yet
+  				SNAPdata.forEach(function(d) {
+  					d.eachtest = +d['Fiscal Year'];
+  					if (d['Fiscal Year']==='2014'){
+						console.log("For Each Test Years: "+eachtest);
+  					};
+  				})
+*/
+			var xScale = d3.scale.linear()
+							.domain(d3.range(cost.length))
+							.rangeRound([0, w/cost.length]);
+
+			var yScale = d3.scale.linear()
+							.domain([0, d3.max(cost)])
+							.range([0, h]);
+
+
+//			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+
+			//Create bars
+			svg.selectAll("rect")
+			   .data(cost)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+					return xScale(i);
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d);
+			   })
+			   .attr("width", w / cost.length - padding)
+			   .attr("height", function(d) {
+			   		return yScale(d);
+			   })
+			   .attr("fill", function(d) {
+//					return "rgb(0, 0, " + (d*.2) + ")";
+					return "teal";
+			   });
+
+			/*Create labels
+			svg.selectAll("text")
+			   .data(cost)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return d;
+			   })
+			   .attr("text-anchor", "middle")
+			   .attr("x", function(d, i) {
+			   		return xScale(i) + xScale.rangeBand() / 2;
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d) + 14;
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "white");
+
+*/
+			//On click, update with new data			
+			d3.select("#ParticipationID")
+				.on("click", function() {
+
+					//Update all rects
+					svg.selectAll("rect")
+					   .data(participation)
+					   .transition()
+					   .duration(2000)
+					   .ease("linear")
+					   .attr("y", function(d) {
+					   		return h - yScale(d);
+					   })
+					   .attr("height", function(d) {
+					   		return yScale(d);
+					   })
+					   .attr("fill", function(d) {
+							return "blue";
+					   });
+				});
+
+//			On click, update with new data			
+			d3.select("#CostsID")
+				.on("click", function() {
+
+					//Update all rects
+					svg.selectAll("rect")
+					   .data(cost)
+					   .transition()
+					   .duration(2000)
+					   .ease("linear")
+					   .attr("y", function(d) {
+					   		return h - yScale(d);
+					   })
+					   .attr("height", function(d) {
+					   		return yScale(d);
+					   })
+					   .attr("fill", function(d) {
+							return "teal";
+					   });
+
+
+/*
+					Update all labels
+					svg.selectAll("text")
+					   .data(participation)
+					   .transition()
+					   .duration(2000)
+					   .ease("linear")
+					   .text(function(d) {
+					   		return d;
+					   })
+					   .attr("x", function(d, i) {
+					   		return xScale(i) + xScale.rangeBand() / 2;
+					   })
+					   .attr("y", function(d) {
+					   		return h - yScale(d) + 14;
+					   });
+*/					   				
+				});
+
+			});
+		
+		</script>
+	</body>
+</html>

@@ -30,24 +30,6 @@ a:active {
 	color:#0000FF;
 }
 
-#dataleft {
-	background-color:#2B2A2A;
-	/* foreground: #BAB48D */
-	height:500px;
-	width:400px;
-	float:left;
-	padding:5px;
-}
-
-#dataright {
-	background-color:#2B2A2A;
-	/* foreground: #BAB48D */
-	height:500px;
-	width:400px;
-	float:right;
-	padding:5px;
-}
-
 #title {
 	background-color:#25383C;
 	font-family:"Times New Roman", Times, Serif;
@@ -82,12 +64,3 @@ a:active {
 	text-align:left;
 	font-size:1.75em;
 }
-
-#inside {
-	background-color:#6D6968;
-	height:200px;
-	width:300px;
-	float:center;
-	padding:1px;
-}
-
