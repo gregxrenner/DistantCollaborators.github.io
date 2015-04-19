@@ -95,7 +95,7 @@
 			   })
 			   .attr("fill", function(d) {
 //					return "rgb(0, 0, " + (d*.2) + ")";
-					return "blue";
+					return "teal";
 			   });
 
 			/*Create labels
@@ -117,16 +117,12 @@
 			   .attr("font-size", "11px")
 			   .attr("fill", "white");
 
-
+*/
 
 
 			//On click, update with new data			
 			d3.select("p")
 				.on("click", function() {
-
-					//New values for dataset
-					//dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
-	//							5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
 
 					//Update all rects
 					svg.selectAll("rect")
@@ -141,10 +137,10 @@
 					   		return yScale(d);
 					   })
 					   .attr("fill", function(d) {
-							return "rgb(0, 0, " + (d * 10) + ")";
+							return "blue";
 					   });
-
-					//Update all labels
+/*
+					Update all labels
 					svg.selectAll("text")
 					   .data(participation)
 					   .transition()
@@ -159,9 +155,9 @@
 					   .attr("y", function(d) {
 					   		return h - yScale(d) + 14;
 					   });
-					   				
+*/					   				
 				});
-*/
+
 			});
 		
 		</script>
