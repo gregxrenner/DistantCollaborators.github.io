@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>D3: Demo of linear easing</title>
+		<title>Food Stamp Costs and Average Participation over time</title>
 		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<style type="text/css">
@@ -25,6 +25,7 @@
 			var header = [];
 			var year = [];
 			var eachtest = [];
+			var padding = 1;
 			
 //			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 //							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
@@ -40,8 +41,8 @@
   				SNAPdata.map(function(d) {
   					console.log ('Fiscal Year '+d['Fiscal Year']+' - Total Costs '+d['Total Costs ($M)']);
   					year.push(d['Fiscal Year']);
-  					cost.push(d['Total Costs ($M)']);
-  					participation.push(d['Average Participation (Thousands)']);
+  					cost.push(+d['Total Costs ($M)']);
+  					participation.push(+d['Average Participation (Thousands)']);
   					plotcost.push({x:d['Fiscal Year'],y:d['Total Costs ($M)']});
   					plotparticipation.push({x:d['Fiscal Year'],y:d['Average Participation (Thousands)']});
   					if (d['Fiscal Year']==='2014'){
@@ -64,13 +65,14 @@
 */
 			var xScale = d3.scale.linear()
 							.domain(d3.range(cost.length))
-							.rangeRoundBands([0, w], 0.05);
+							.rangeRound([0, w/cost.length]);
 
 			var yScale = d3.scale.linear()
 							.domain([0, d3.max(cost)])
 							.range([0, h]);
-			
-			//Create SVG element
+
+
+//			//Create SVG element
 			var svg = d3.select("body")
 						.append("svg")
 						.attr("width", w)
@@ -82,12 +84,13 @@
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-			   		return xScale(i);
+	//		   		return i * (w / cost.length) +padding;
+					return xScale(i);
 			   })
 			   .attr("y", function(d) {
 			   		return h - yScale(d);
 			   })
-			   .attr("width", xScale.rangeBand())
+			   .attr("width", w / cost.length - padding)
 			   .attr("height", function(d) {
 			   		return yScale(d);
 			   })
@@ -95,7 +98,7 @@
 					return "rgb(0, 0, " + (d * 10) + ")";
 			   });
 
-			//Create labels
+			/*Create labels
 			svg.selectAll("text")
 			   .data(cost)
 			   .enter()
@@ -158,8 +161,9 @@
 					   });
 					   				
 				});
+*/
 			});
-			
+		
 		</script>
 	</body>
 </html>
