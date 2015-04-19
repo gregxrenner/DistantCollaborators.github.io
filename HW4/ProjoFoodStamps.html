@@ -16,8 +16,8 @@
 		<script type="text/javascript">
 
 			//Width and height
-			var w = 600;
-			var h = 250;
+			var w = 900;
+			var h = 600;
 			var cost = [];
 			var participation = [];
 			var plotcost = [];
@@ -25,7 +25,7 @@
 			var header = [];
 			var year = [];
 			var eachtest = [];
-			var padding = 1;
+			var padding = 5;
 			
 //			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 //							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
@@ -84,7 +84,6 @@
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-	//		   		return i * (w / cost.length) +padding;
 					return xScale(i);
 			   })
 			   .attr("y", function(d) {
@@ -95,7 +94,8 @@
 			   		return yScale(d);
 			   })
 			   .attr("fill", function(d) {
-					return "rgb(0, 0, " + (d * 10) + ")";
+//					return "rgb(0, 0, " + (d*.2) + ")";
+					return "blue";
 			   });
 
 			/*Create labels
