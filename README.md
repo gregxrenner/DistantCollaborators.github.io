@@ -1,2 +1,0 @@
-# DistantCollaborators.github.io
-Homepage
